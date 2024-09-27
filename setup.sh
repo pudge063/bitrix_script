@@ -1,4 +1,7 @@
-apt-get update && apt-get upgrade
+sudo apt update
+sudo apt install nginx php8.1-fpm php8.1-mysql php8.1-mbstring php8.1-xml php8.1-curl php8.1-zip php-gd
+
+apt-get update && apt-get upgrade -y
 
 # Add Docker's official GPG key:
 sudo apt-get update -y
@@ -29,11 +32,15 @@ sudo systemctl enable containerd.service
 
 apt install nginx -y
 
-mv bitrix.freeinet.space /etc/nginx/sites-available
+mv config/bitrix.freeinet.space /etc/nginx/sites-available
 
-ln -s /etc/nginx/sites-enabled/ /etc/nginx/sites-available/bitrix.freeinet.space
+ln -s /etc/nginx/sites-available/bitrix.freeinet.space /etc/nginx/sites-enabled/
 
 systemctl reload nginx
 
 systemctl restart nginx
 
+sudo systemctl start php8.1-fpm
+
+
+mv config/php.ini /etc/php/8.1/fpm/php.ini

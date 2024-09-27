@@ -1,16 +1,5 @@
 version: '3'
 services:
-  php:
-    container_name: php-fpm-bitrix
-    build:
-      context: .
-      dockerfile: ./php-fpm/Dockerfile
-    volumes:
-      - './src:/var/www/html'
-    command: /bin/sh -c "chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html && php-fpm"
-    depends_on:
-      - db
-
   db:
     container_name: mysql-bitrix
     image: mysql:8
@@ -22,11 +11,11 @@ services:
       - MYSQL_ROOT_PASSWORD=123
 
   phpmyadmin:
-    container_name: phpmyadmin:fpm-alpine
-    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-bitrix
+    image: phpmyadmin:fpm-alpine
     ports:
-      - 8080:8080
+      - 8080:80
     environment:
-      - PMA_HOST=localhost
+      - PMA_HOST=db
       - PMA_PORT=3306
     
