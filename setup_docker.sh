@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt-get update -y && sudo apt-get upgrade -y
-sudo apt-get install -y ca-certificates curl
+sudo apt-get install -y ca-certificates curl -y
 
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
@@ -13,7 +13,7 @@ echo \
 
 sudo apt-get update -y
 
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 sudo groupadd docker || true
 sudo usermod -aG docker $USER
@@ -25,4 +25,4 @@ sudo systemctl enable containerd.service
 
 sudo systemctl start docker
 
-sudo systemctl status docker
+# sudo systemctl status docker
