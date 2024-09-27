@@ -1,21 +1,23 @@
-version: '3'
+version: '3.8'
+
 services:
   db:
-    container_name: mysql-bitrix
-    image: mysql:8
-    ports:
-      - 3306:3306
+    image: mysql:5.7
+    restart: always
     environment:
-      - MYSQL_USERNAME=user
-      - MYSQL_PASSWORD=1234
-      - MYSQL_ROOT_PASSWORD=123
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: db_bitrix
+      MYSQL_USER: studentq
+      MYSQL_PASSWORD: 1234
+    volumes:
+      - db_data:/var/lib/mysql
 
   phpmyadmin:
-    container_name: phpmyadmin-bitrix
-    image: phpmyadmin:fpm-alpine
-    ports:
-      - 8080:80
+    image: phpmyadmin/phpmyadmin
+    restart: always
     environment:
-      - PMA_HOST=db
-      - PMA_PORT=3306
-    
+      PMA_HOST: db
+      PMA_USER: studentq
+      PMA_PASSWORD: 1234
+    ports:
+      - '8080:80'
