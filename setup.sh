@@ -31,7 +31,7 @@ apt install nginx -y
 
 mv bitrix.freeinet.space /etc/nginx/sites-available
 
-ln -s /etc/nginx/sites-enabled/bitrix.freeinet.space /etc/nginx/sites-available/bitrix.freeinet.space
+ln -s /etc/nginx/sites-enabled/ /etc/nginx/sites-available/bitrix.freeinet.space
 
 systemctl reload nginx
 
